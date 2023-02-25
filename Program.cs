@@ -252,6 +252,140 @@ namespace FirstProgramme
             return pays;
         }
 
+        static void CreateDictionary()
+        {
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+            phoneBook.Add("Jean", "064125475");
+            phoneBook.Add("Marie", "072456807");
+            phoneBook["Martin"] = "01452544";
+
+
+            Console.WriteLine($"Numéro de tel Marie => {phoneBook["Marie"]}"); // 072456807
+
+            if (phoneBook.ContainsKey("Toto"))
+            {
+                Console.WriteLine(phoneBook["Toto"]);
+            }
+            else
+            {
+                Console.WriteLine("Cette personne n'a pas été trouvée");
+            }
+
+        }
+
+        static void LaunchForEach()
+        {
+            var noms = new string[] { "Toto", "Jean", "Pierre" };
+
+            //for (int i = 0; i < noms.Length;i++)
+            //{
+            //    Console.WriteLine(noms[i]);
+            //}
+
+            foreach(string nom in noms)
+            {
+                Console.WriteLine(nom);
+            }
+
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+            phoneBook.Add("Jean", "064125475");
+            phoneBook.Add("Marie", "072456807");
+            phoneBook["Martin"] = "01452544";
+
+            foreach (var element in phoneBook)
+            {
+                Console.WriteLine($" Key = {element.Key} -> Value = {element.Value}");
+            }
+
+
+        }
+        static void SortList()
+        {
+
+            var namesOne = new List<string>() { "Toto", "Jean", "Pierre", "Emilie", "Sophie", "Martin", "Benoit", "Vincent" };
+            var namesTwo = new string [] { "Toto", "Jean", "Pierre", "Emilie", "Sophie", "Martin", "Benoit", "Vincent" };
+
+            namesOne.Sort(); // Ordre Alphabétique pour listes
+            Array.Sort(namesTwo);// Ordre Alphabétique pour tableaux
+
+            Console.WriteLine("----- TRIE Alphabétique LISTE -----");
+
+            foreach (var name in namesOne)
+            {
+                Console.WriteLine(name);
+            }
+            Console.WriteLine("----- TRIE Alphabétique tableaux -----");
+
+            foreach (var name in namesTwo)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE Alphabétique -----");
+
+            var namesSort = namesOne.OrderBy(nom => nom); // Ordre Alphabétique 
+
+            foreach (var name in namesSort)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE Alphabétique INVERSER -----");
+
+            var namesDescendingSort = namesOne.OrderByDescending(nom => nom); // Ordre Alphabétique Inverse
+
+            foreach (var name in namesDescendingSort)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE par taille -----");
+
+            var namesSortLength = namesOne.OrderBy(nom => nom.Length); // Ordre par taille
+
+            foreach (var name in namesSortLength)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE par dernier caractere -----");
+
+            var namesSortEndChar = namesOne.OrderBy(nom => nom[nom.Length-1]); // Ordre Alphabétique dernier lettre 
+
+            foreach (var name in namesSortEndChar)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE Alphabétique + condition -----");
+
+            var namesThree = new List<string>() { "Toto", "Jean", "Pierre", "Emilie", "Sophie", "Martin", "Benoit", "Vincent" };
+
+
+            namesThree = namesThree.OrderBy(nom => nom).ToList(); // Ordre Alphabétique 
+
+            namesThree = namesThree.Where(nom => nom.Length > 4).ToList();
+
+            foreach (var name in namesThree)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("----- TRIE numérique -----");
+
+            var numbers = new List<int>() { 4, 8, 1, 9, 2 };
+
+
+            numbers = numbers.OrderBy(number => number).ToList(); // Ordre Numérique 
+
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -307,6 +441,20 @@ namespace FirstProgramme
             Console.WriteLine("\n-======- -======-- Liste dans une liste -======- -======-\n");
 
             List<List<string>> myCountryList = ListInList();
+
+            Console.WriteLine("\n-======- -======-- Dictionnaire -======- -======-\n");
+
+
+            CreateDictionary();
+
+            Console.WriteLine("\n-======- -======-- forEach -======- -======-\n");
+
+            LaunchForEach();
+
+            Console.WriteLine("\n-======- -======-- Tris -======- -======-\n");
+
+            SortList();
+
 
 
         }
